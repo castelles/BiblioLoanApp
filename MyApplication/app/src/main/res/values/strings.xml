@@ -9,4 +9,6 @@
     <string name="Apptitle">BiblioLoan</string>
     <string name="forgetLabel">Esqueci a senha</string>
     <string name="loginBt">Entrar</string>
+    <string name="new_user">Novo Usuário</string>
+    <string name="about">Sobre</string>
 </resources>
