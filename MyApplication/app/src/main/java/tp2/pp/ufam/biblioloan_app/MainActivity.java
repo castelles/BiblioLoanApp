@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId())
         {
             case R.id.new_user:
-                //Criar novo usuário
+                Intent intentNewUser = new Intent(this, NewUserActivity.class);
+                startActivity(intentNewUser);
                 return true;
             case R.id.about:
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);

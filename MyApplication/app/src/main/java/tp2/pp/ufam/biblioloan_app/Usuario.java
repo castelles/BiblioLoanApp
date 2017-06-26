@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Usuario implements Serializable
 {
     private String userName, pass, fullName;
-    private int canLoan;
+    private int canLoan;    // 0 - pode emprestar    `1 - não pode emprestar
 
     public Usuario(String userName, String pass, String fullName, int canLoan)
     {

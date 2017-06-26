@@ -38,8 +38,8 @@ public class UsuarioDAO
     {
         try
         {
-            String sqlCmd = "INSERT INTO Usuarios VALUES ('" + user.getUserName() + "' ,'"
-                        + user.getPass() + "' , '"  + user.getFullName() + "', '" + user.getCanLoan() + "'";
+            String sqlCmd = "INSERT INTO Usuarios VALUES ('" + user.getUserName() + "', '"
+                        + user.getPass() + "', '"  + user.getFullName() + "', " + user.getCanLoan() + ")";
             this.database.execSQL(sqlCmd);
             return true;
         }

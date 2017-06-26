@@ -11,4 +11,6 @@
     <string name="loginBt">Entrar</string>
     <string name="new_user">Novo Usuário</string>
     <string name="about">Sobre</string>
+    <string name="backBt">Voltar</string>
+    <string name="createBt">Criar</string>
 </resources>
