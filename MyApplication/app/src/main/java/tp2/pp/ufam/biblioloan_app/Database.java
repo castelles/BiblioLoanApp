@@ -10,11 +10,12 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class Database extends SQLiteOpenHelper
 {
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "LibraryDB.db";
     public static final String SQL_CREATE_TABLES = "CREATE TABLE Usuarios(" +
-            "login TEXT PRIMARY KEY, nome TEXT, senha TEXT, tipo INT)";
+            "login TEXT PRIMARY KEY, password TEXT, name TEXT, canloan INT)";
     public static final String SQL_DELETE_TABLES = "DROP TABLE IF EXISTS Usuarios";
+    public static final String SQL_INSERT_ROOTUSER = "INSERT INTO Usuarios VALUES('root', 'root', 'Caio Arthur', 1)";
 
     public Database(Context context)
     {
@@ -25,6 +26,7 @@ public class Database extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
         db.execSQL(SQL_CREATE_TABLES);
+        db.execSQL(SQL_INSERT_ROOTUSER);
     }
 
     @Override

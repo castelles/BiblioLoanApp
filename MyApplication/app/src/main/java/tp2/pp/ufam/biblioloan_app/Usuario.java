@@ -8,56 +8,47 @@ import java.io.Serializable;
 
 public class Usuario implements Serializable
 {
-    private String nomeDeUsuario, senha, anoDeNascimento, nomeCompleto;
-    private int codigo, podeEmprestar;
+    private String userName, pass, fullName;
+    private int canLoan;
 
-    public int getPodeEmprestar() {
-        return podeEmprestar;
-    }
-
-    public void setPodeEmprestar(int podeEmprestar) {
-        this.podeEmprestar = podeEmprestar;
-    }
-
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
-
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
-
-    public String getNomeDeUsuario() {
-        return nomeDeUsuario;
-    }
-
-    public void setNomeDeUsuario(String nomeDeUsuario) {
-        this.nomeDeUsuario = nomeDeUsuario;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getAnoDeNascimento() {
-        return anoDeNascimento;
-    }
-
-    public void setAnoDeNascimento(String anoDeNascimento) {
-        this.anoDeNascimento = anoDeNascimento;
-    }
-
-    public int getCodigo()
+    public Usuario(String userName, String pass, String fullName, int canLoan)
     {
-        return codigo;
+        this.userName = userName;
+        this.pass = pass;
+        this.fullName = fullName;
+        this.canLoan = canLoan;
     }
 
-    public void setCodigo(int codigo)
-    {
-        this.codigo = codigo;
+    public int getCanLoan() {
+        return canLoan;
     }
+
+    public void setCanLoan(int canLoan) {
+        this.canLoan = canLoan;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setNomeCompleto(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
 }
