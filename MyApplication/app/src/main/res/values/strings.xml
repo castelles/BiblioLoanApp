@@ -14,6 +14,6 @@
     <string name="backBt">Voltar</string>
     <string name="createBt">Criar</string>
     <string name="listTitles">Listar Títulos disponíveis</string>
-    <string name="return">Devolver</string>
     <string name="register">Registro</string>
+    <string name="returnrr">Voltar</string>
 </resources>
