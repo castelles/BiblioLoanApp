@@ -44,8 +44,9 @@ public class TitulosDAO
     {
         try
         {
-            String sqlCmd = "INSERT INTO Titulos VALUES (NULL, '" + title.getTitle() + "', '"
+            String sqlCmd = "INSERT INTO Titulos VALUES('" + title.getTitle() + "', '"
                     + title.getAuthor() + "', "  + title.getEdition() + ", " + title.getAvailable() + ")";
+
             this.database.execSQL(sqlCmd);
             return true;
         }
@@ -58,7 +59,7 @@ public class TitulosDAO
 
     public Cursor getTitles()
     {
-        return this.database.rawQuery("SELECT rowid AS _id, title, author, edition, available FROM Titulos ORDER BY title", null);
+        return this.database.rawQuery("SELECT rowid AS _id, title, author, edition, available FROM Titulos WHERE available=0 ORDER BY title", null);
     }
 
     public void populateTitlesTable()
@@ -101,9 +102,12 @@ public class TitulosDAO
         listTitles.add(title16);
 
         Iterator<Titulos> iterator = listTitles.iterator();
+        Titulos titlee = iterator.next();
         while (iterator.hasNext())
         {
-            this.addTitle(iterator.next());
+            Log.i("error_title", titlee.getTitle());
+            titlee = iterator.next();
+            this.addTitle(titlee);
         }
     }
 
