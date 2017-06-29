@@ -34,4 +34,15 @@ public class UserActivity extends AppCompatActivity
         startActivity(intent1);
     }
 
+    public void clickRegister(View view)
+    {
+        Intent intent = getIntent();
+        Usuario user = (Usuario) intent.getSerializableExtra("user");
+
+        Intent intent1 = new Intent(this, RegistroActivity.class);
+
+        intent1.putExtra("user", user);
+        startActivity(intent1);
+    }
+
 }

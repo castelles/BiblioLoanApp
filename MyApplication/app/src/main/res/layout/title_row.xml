@@ -20,24 +20,22 @@
         android:id="@+id/authorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/titleText"
-        android:layout_below="@+id/titleText"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="14dp"
         android:text="Author"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:layout_below="@+id/titleText"
+        android:layout_alignStart="@+id/titleText" />
 
     <TextView
         android:id="@+id/editionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="@android:color/holo_blue_dark"
         android:layout_alignBaseline="@+id/textView"
         android:layout_alignBottom="@+id/textView"
-        android:layout_marginStart="11dp"
-        android:layout_toEndOf="@+id/titleText"
-        android:text="0"
-        android:textColor="@android:color/holo_blue_dark" />
+        android:layout_toEndOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
@@ -48,4 +46,11 @@
         android:layout_below="@+id/authorText"
         android:layout_alignStart="@+id/titleText"
         android:layout_marginTop="17dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editionText"
+        android:layout_below="@+id/editionText" />
 </RelativeLayout>

@@ -18,14 +18,14 @@ public class Database extends SQLiteOpenHelper
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "LibraryDB.db";
     public static final String SQL_CREATE_TABLE_USER = "CREATE TABLE Usuarios(" +
-            "login TEXT PRIMARY KEY, password TEXT, name TEXT, canloan INT)";
+            "login TEXT PRIMARY KEY, password TEXT, name TEXT, canloan INT)";   //0 - pode emprestar  1 - pendente
     public static final String SQL_DELETE_TABLES = "DROP TABLE IF EXISTS Usuarios";
     public static final String SQL_INSERT_ROOTUSER = "INSERT INTO Usuarios VALUES('root', '', 'Caio Arthur', 0)";
 
     public static final String SQL_CREATE_LOANTABLE = "CREATE TABLE Emprestimos(" +
-            "IdTitle TEXT PRIMARY KEY, idEdition INT, idName TEXT, returned INT)";      //0 - devolvido     1 - à devolver
+            "idTitle TEXT PRIMARY KEY, idEdition INT, idName TEXT, returned INT)";      //0 - devolvido     1 - à devolver
     public static final String SQL_CREATE_TABLE_TITLES = "CREATE TABLE Titulos(" +
-            "title TEXT PRIMARY KEY, author TEXT, edition INT, available INT)";
+            "title TEXT PRIMARY KEY, author TEXT, edition INT, available INT)";        //0 - disponível     1 - indisponível
 
     public Database(Context context)
     {

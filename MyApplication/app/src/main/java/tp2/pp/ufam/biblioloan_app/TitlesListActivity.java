@@ -58,8 +58,8 @@ public class TitlesListActivity extends ListActivity {
 
             if (titleToLoan != null && user != null)
             {
-                titlesDAO.alterLoanTitle(titleToLoan);
-                userDAO.updateAvailability(user);
+                titlesDAO.alterLoanTitle(titleToLoan, 1);
+                userDAO.updateAvailability(user, 1);
 
                 loanDAO.addTitle(titleToLoan, user);
 

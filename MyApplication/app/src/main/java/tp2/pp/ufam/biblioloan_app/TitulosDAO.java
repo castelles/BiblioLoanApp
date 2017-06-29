@@ -60,10 +60,10 @@ public class TitulosDAO
         return this.database.rawQuery("SELECT rowid AS _id, title, author, edition, available FROM Titulos WHERE available=0 ORDER BY title", null);
     }
 
-    public void alterLoanTitle(Titulos titulo)
+    public void alterLoanTitle(Titulos titulo, int availability)
     {
-        titulo.setAvailable(1);
-        String sqlCmd = "UPDATE  Titulos SET available=1 WHERE title='" + titulo.getTitle() + "' AND edition=" + titulo.getEdition();
+        titulo.setAvailable(availability);
+        String sqlCmd = "UPDATE  Titulos SET available=" + availability + " WHERE title='" + titulo.getTitle() + "' AND edition=" + titulo.getEdition();
         database.execSQL(sqlCmd);
     }
 }

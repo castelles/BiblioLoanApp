@@ -55,10 +55,10 @@ public class UsuarioDAO
         return this.database.rawQuery("SELECT rowid AS _id, login, password, name, canloan FROM Usuarios ORDER BY login", null);
     }
 
-    public void updateAvailability(Usuario user)
+    public void updateAvailability(Usuario user, int canLoan)
     {
-        user.setCanLoan(1);
-        String sqlCmd = "UPDATE Usuarios SET canloan=1 WHERE login='" + user.getUserName() + "'";
+        user.setCanLoan(canLoan);
+        String sqlCmd = "UPDATE Usuarios SET canloan=" + canLoan + " WHERE login='" + user.getUserName() + "'";
         database.execSQL(sqlCmd);
     }
 }

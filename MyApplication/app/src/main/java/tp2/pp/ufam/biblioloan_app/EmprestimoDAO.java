@@ -4,6 +4,7 @@ package tp2.pp.ufam.biblioloan_app;
  */
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -35,7 +36,13 @@ public class EmprestimoDAO
 
     public void updateReturnedTitles(Usuario user)
     {
-        String sqlCmd = "UPDATE Emprestimos SER returned=0 WHERE idName='" + user.getUserName() + "'";
+        String sqlCmd = "UPDATE Emprestimos SET returned=0 WHERE idName='" + user.getUserName() + "'";
         database.execSQL(sqlCmd);
+    }
+
+    public Cursor getTitles(Usuario user)
+    {
+        return this.database.rawQuery("SELECT rowid AS _id, idTitle, idEdition, CASE WHEN returned=0 THEN 'Devolvido' " +
+                "ELSE 'Pendente' END AS returned FROM Emprestimos WHERE idName='" + user.getUserName() + "' ORDER BY idTitle", null);
     }
 }
