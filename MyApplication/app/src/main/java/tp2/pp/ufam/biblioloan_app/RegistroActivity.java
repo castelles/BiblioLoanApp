@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.util.Log;
+
+import org.w3c.dom.Text;
 
 public class RegistroActivity extends ListActivity {
 
@@ -17,7 +20,9 @@ public class RegistroActivity extends ListActivity {
     private EmprestimoDAO loanDAO;
     private TitulosDAO titlesDAO;
     private UsuarioDAO userDAO;
+    private TextView mkLoan;
 
+    Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +31,27 @@ public class RegistroActivity extends ListActivity {
         loanDAO = new EmprestimoDAO(this);
 
         Intent intent = getIntent();
-        Usuario user = (Usuario) intent.getSerializableExtra("user");
+        user = (Usuario) intent.getSerializableExtra("user");
 
-        data = new SimpleCursorAdapter(this, R.layout.register_row, loanDAO.getTitles(user), new String[] {"idTitle", "idEdition", "returned"},
-                new int[] { R.id.titleRegister, R.id.editionRegister, R.id.statusRegister}, 0);
-        setListAdapter(data);
+        if (loanDAO.getTitles(user).getCount() > 0)
+        {
+            data = new SimpleCursorAdapter(this, R.layout.register_row, loanDAO.getTitles(user), new String[] {"idTitle", "idEdition", "returned"},
+                    new int[] { R.id.titleRegister, R.id.editionRegister, R.id.statusRegister}, 0);
+            setListAdapter(data);
+        }
+        else
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setMessage("Realize algum empréstimo!").setPositiveButton("OK", new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i)
+                {
+                    finish();
+                }
+            }).show();
+
+        }
     }
 
     @Override
@@ -38,9 +59,6 @@ public class RegistroActivity extends ListActivity {
     {
         TextView statusTxt = (TextView) findViewById(R.id.statusRegister);
         String status = statusTxt.getText().toString();
-
-        Intent intent = getIntent();
-        final Usuario user = (Usuario) intent.getSerializableExtra("user");
 
         if (status.equals("Pendente"))
         {

@@ -26,4 +26,5 @@
     <string name="newpas">nova senha</string>
     <string name="update" />
     <string name="updatee">Atualizar</string>
+    <string name="makeALoan">Realize algum empréstimo</string>
 </resources>

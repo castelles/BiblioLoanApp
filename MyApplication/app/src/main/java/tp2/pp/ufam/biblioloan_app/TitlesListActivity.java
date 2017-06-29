@@ -12,18 +12,25 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class TitlesListActivity extends ListActivity {
 
     private TitulosDAO titlesDAO;
     private UsuarioDAO userDAO;
     private EmprestimoDAO loanDAO;
     private SimpleCursorAdapter data;
+    private Usuario user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         this.titlesDAO = new TitulosDAO(this);
+
+        Intent intent = getIntent();
+        user = (Usuario) intent.getSerializableExtra("user");
 
         data = new SimpleCursorAdapter(this, R.layout.title_row, titlesDAO.getTitles(), new String[] {"title", "author", "edition"},
                 new int[] { R.id.titleText, R.id.authorText, R.id.editionText}, 0);
@@ -41,10 +48,9 @@ public class TitlesListActivity extends ListActivity {
 
         String title = titleName.getText().toString();
         int editionNumber = Integer.parseInt(editionName.getText().toString());
-        Titulos titleToLoan = titlesDAO.getTitle(title, 9);
+        final Titulos titleToLoan = titlesDAO.getTitle(title, editionNumber);
 
-        Intent intent = getIntent();
-        Usuario user = (Usuario) intent.getSerializableExtra("user");
+        user = userDAO.getUser(user.getUserName(), user.getPass());
 
         if (user.getCanLoan() == 1)
         {
@@ -58,15 +64,18 @@ public class TitlesListActivity extends ListActivity {
 
             if (titleToLoan != null && user != null)
             {
-                titlesDAO.alterLoanTitle(titleToLoan, 1);
-                userDAO.updateAvailability(user, 1);
 
                 loanDAO.addTitle(titleToLoan, user);
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
                 alert.setMessage("Empréstimo realizado com sucesso!").setNeutralButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        titlesDAO.alterLoanTitle(titleToLoan, 1);
+                        userDAO.updateAvailability(user, 1);
+
+                        Log.i("debugManual", "Emprestimo realizado  " + user.getCanLoan());
                         finish();
                     }
                 }).show();
@@ -77,7 +86,7 @@ public class TitlesListActivity extends ListActivity {
                 alert.setMessage("Erro ao acessar arquivos").setNeutralButton("OK", null).show();
             }
 
-            Log.d("debugManual", user.getCanLoan() + "");
+            Log.i("debugManual", user.getCanLoan() + "");
         }
     }
 }

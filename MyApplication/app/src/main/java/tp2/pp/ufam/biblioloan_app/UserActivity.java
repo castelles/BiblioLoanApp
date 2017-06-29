@@ -9,6 +9,7 @@ import android.view.View;
 
 public class UserActivity extends AppCompatActivity
 {
+    Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +17,7 @@ public class UserActivity extends AppCompatActivity
         setContentView(R.layout.activity_user);
 
         Intent intent = getIntent();
-        Usuario user = (Usuario) intent.getSerializableExtra("user");
+        user = (Usuario) intent.getSerializableExtra("user");
 
         TextView textBemVindo = (TextView) findViewById(R.id.welcomeText);
 
@@ -25,9 +26,6 @@ public class UserActivity extends AppCompatActivity
 
     public void openListAvailableTitles(View view)
     {
-        Intent intent = getIntent();
-        Usuario user = (Usuario) intent.getSerializableExtra("user");
-
         Intent intent1 = new Intent(this, TitlesListActivity.class);
 
         intent1.putExtra("user", user);
@@ -36,9 +34,6 @@ public class UserActivity extends AppCompatActivity
 
     public void clickRegister(View view)
     {
-        Intent intent = getIntent();
-        Usuario user = (Usuario) intent.getSerializableExtra("user");
-
         Intent intent1 = new Intent(this, RegistroActivity.class);
 
         intent1.putExtra("user", user);
