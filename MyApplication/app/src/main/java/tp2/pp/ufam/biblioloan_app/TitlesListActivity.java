@@ -1,13 +1,22 @@
 package tp2.pp.ufam.biblioloan_app;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ListActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
 
 public class TitlesListActivity extends ListActivity {
 
     private TitulosDAO titlesDAO;
+    private UsuarioDAO userDAO;
+    private EmprestimoDAO loanDAO;
     private SimpleCursorAdapter data;
 
     @Override
@@ -19,5 +28,56 @@ public class TitlesListActivity extends ListActivity {
         data = new SimpleCursorAdapter(this, R.layout.title_row, titlesDAO.getTitles(), new String[] {"title", "author", "edition"},
                 new int[] { R.id.titleText, R.id.authorText, R.id.editionText}, 0);
         setListAdapter(data);
+    }
+
+    @Override
+    public void onListItemClick(ListView list, View view, int pos, long id)
+    {
+        userDAO = new UsuarioDAO(this);
+        loanDAO = new EmprestimoDAO(this);
+
+        TextView titleName = (TextView) view.findViewById(R.id.titleText);
+        TextView editionName= (TextView) view.findViewById(R.id.editionText);
+
+        String title = titleName.getText().toString();
+        int editionNumber = Integer.parseInt(editionName.getText().toString());
+        Titulos titleToLoan = titlesDAO.getTitle(title, 9);
+
+        Intent intent = getIntent();
+        Usuario user = (Usuario) intent.getSerializableExtra("user");
+
+        if (user.getCanLoan() == 1)
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setMessage("Encerre seu atual ao empréstimo para poder realizar outro!").setNeutralButton("OK", null).show();
+        }
+
+        else
+        {
+            Log.e("debugManual", titleToLoan.getTitle() + "\n" + user.getUserName());
+
+            if (titleToLoan != null && user != null)
+            {
+                titlesDAO.alterLoanTitle(titleToLoan);
+                userDAO.updateAvailability(user);
+
+                loanDAO.addTitle(titleToLoan, user);
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setMessage("Empréstimo realizado com sucesso!").setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                }).show();
+            }
+            else
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setMessage("Erro ao acessar arquivos").setNeutralButton("OK", null).show();
+            }
+
+            Log.d("debugManual", user.getCanLoan() + "");
+        }
     }
 }

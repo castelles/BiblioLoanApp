@@ -16,4 +16,6 @@
     <string name="listTitles">Listar Títulos disponíveis</string>
     <string name="register">Registro</string>
     <string name="returnrr">Voltar</string>
+    <string name="editionLbl">Edição</string>
+    <string name="LoanBt">Emprestar</string>
 </resources>

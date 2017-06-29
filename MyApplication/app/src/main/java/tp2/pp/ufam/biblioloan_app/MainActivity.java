@@ -3,6 +3,7 @@ package tp2.pp.ufam.biblioloan_app;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,8 +55,12 @@ public class MainActivity extends AppCompatActivity {
         String login = editText.getText().toString();
         String pass = editTextPass.getText().toString();
 
+        Log.e("debugManual", "Antes do bd inicializar");
+
         UsuarioDAO userDAO = new UsuarioDAO(this);
         Usuario user = userDAO.getUser(login, pass);
+
+        Log.e("debugManual", "Depois do bd inicializar");
 
         if (user != null)
         {

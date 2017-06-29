@@ -54,4 +54,11 @@ public class UsuarioDAO
     {
         return this.database.rawQuery("SELECT rowid AS _id, login, password, name, canloan FROM Usuarios ORDER BY login", null);
     }
+
+    public void updateAvailability(Usuario user)
+    {
+        user.setCanLoan(1);
+        String sqlCmd = "UPDATE Usuarios SET canloan=1 WHERE login='" + user.getUserName() + "'";
+        database.execSQL(sqlCmd);
+    }
 }
