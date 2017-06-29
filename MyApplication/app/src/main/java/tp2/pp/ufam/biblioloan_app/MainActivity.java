@@ -73,4 +73,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void forgetPass(View view)
+    {
+        Intent intent = new Intent(this, PassReconfigActivity.class);
+        startActivity(intent);
+    }
+
 }

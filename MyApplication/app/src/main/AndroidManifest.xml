@@ -19,7 +19,8 @@
         <activity android:name=".UserActivity" />
         <activity android:name=".NewUserActivity" />
         <activity android:name=".TitlesListActivity" />
-        <activity android:name=".RegistroActivity"></activity>
+        <activity android:name=".RegistroActivity" />
+        <activity android:name=".PassReconfigActivity"></activity>
     </application>
 
 </manifest>
