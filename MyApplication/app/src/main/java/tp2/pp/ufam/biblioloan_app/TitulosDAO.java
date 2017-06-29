@@ -10,8 +10,11 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+
+/*
+ * Classe que realiza todas as manipulacoes necessarias ao longo do funcinamento do app na tabela de
+ * titulos
+ */
 
 public class TitulosDAO
 {
@@ -22,6 +25,9 @@ public class TitulosDAO
         this.database = (new Database(context)).getWritableDatabase();
     }
 
+    /*
+     * Acessa um titulo especificado pelo nome e edicao
+     */
     public Titulos getTitle(String title, int edition)
     {
         Titulos titles = null;
@@ -38,6 +44,9 @@ public class TitulosDAO
         return titles;
     }
 
+    /*
+     * Adiciona um titulo a tabela
+     */
     public boolean addTitle(Titulos title)
     {
         try
@@ -55,11 +64,19 @@ public class TitulosDAO
         }
     }
 
+    /*
+     * Retorna um curso com a lista de todos os titulos disponiveis (available = 0)
+     */
     public Cursor getTitles()
     {
         return this.database.rawQuery("SELECT rowid AS _id, title, author, edition, available FROM Titulos WHERE available=0 ORDER BY title", null);
     }
 
+    /*
+     * Altera a disponibilidade de um titulo
+     *    - 0 para disponivel
+     *    - 1 para indisponivel
+     */
     public void alterLoanTitle(Titulos titulo, int availability)
     {
         titulo.setAvailable(availability);

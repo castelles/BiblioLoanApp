@@ -15,6 +15,9 @@ import java.util.Iterator;
 
 public class Database extends SQLiteOpenHelper
 {
+    /*
+     * INFORMACOES DO BANCO DE DADOS: COMANDOS UTILIZADOS EM EXECSQL
+     */
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "LibraryDB.db";
     public static final String SQL_CREATE_TABLE_USER = "CREATE TABLE Usuarios(" +
@@ -49,6 +52,11 @@ public class Database extends SQLiteOpenHelper
         onCreate(db);
     }
 
+    /*
+     *INSERCAO DOS TITULOS DISPONIVEIS PARA EMPRÉSTIMO
+     *     -Supoe-se que os titulos seriam acessados a partir de um servidor, mas como o aplicativo
+     *     é local, estes itens foram inseridos manualmente pelo método abaixo
+     */
     public void populateTitlesTable(SQLiteDatabase db)
     {
         ArrayList<Titulos> listTitles = new ArrayList<Titulos>();

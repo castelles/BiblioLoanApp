@@ -2,6 +2,7 @@ package tp2.pp.ufam.biblioloan_app;
 
 /*
  * Created by caiotelles on 26/06/17.
+ * Classe generica para qualquer titulo
  */
 
 public class Titulos

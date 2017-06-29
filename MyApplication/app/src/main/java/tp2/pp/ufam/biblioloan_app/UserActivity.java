@@ -7,6 +7,10 @@ import android.text.Html;
 import android.widget.TextView;
 import android.view.View;
 
+/*
+ * Janela de interacao do usuario
+ * A partir daqui se acessa a lista de titulos disponiveis e o registro de emprestimos
+ */
 public class UserActivity extends AppCompatActivity
 {
     Usuario user;

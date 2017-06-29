@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /*
  * Created by caiotelles on 21/06/17.
+ * Classe generica para todos os usuarios
  */
 
 public class Usuario implements Serializable

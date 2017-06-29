@@ -7,6 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+/*
+ * Janela de recuperacao de senha
+ *   - nome de usuario
+ *   - nova senha
+ *   - confirmacao de nova senha
+ */
 public class PassReconfigActivity extends AppCompatActivity {
 
     UsuarioDAO userDAO;

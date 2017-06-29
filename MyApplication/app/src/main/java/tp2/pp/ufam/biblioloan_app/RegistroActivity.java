@@ -14,6 +14,10 @@ import android.util.Log;
 
 import org.w3c.dom.Text;
 
+/*
+ * Janela de registros de titulos emprestados pelo usuario
+ *    - Apresenta uma lista dos titulos emprestados, tanto os devolvidos quanto os pendentes
+ */
 public class RegistroActivity extends ListActivity {
 
     private SimpleCursorAdapter data;
@@ -54,6 +58,10 @@ public class RegistroActivity extends ListActivity {
         }
     }
 
+    /*
+     * Ao clicar num dos itens da lista, se este estiver pendente, será perguntado ao usuario se ele
+     * deseja devolve-lo
+     */
     @Override
     public void onListItemClick(ListView list, View view, int pos, long id)
     {

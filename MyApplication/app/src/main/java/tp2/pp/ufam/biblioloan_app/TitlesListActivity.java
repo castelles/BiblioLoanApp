@@ -13,6 +13,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+/*
+ * Janela que apresenta a lista de titulos disponiveis para emprestimos
+ *    - Os livros que estão emprestados para algum usuario não apareceram aqui
+ */
 
 public class TitlesListActivity extends ListActivity {
 
@@ -37,6 +41,11 @@ public class TitlesListActivity extends ListActivity {
         setListAdapter(data);
     }
 
+    /*
+     * Ao clicar num dos itens da lista, será verificado se o usuário possui alguma pendencia em re-
+     * lacao à devolucao de um titulo.
+     * Se ele estiver com pendencias, não poderá emprestar nenhum outro titulo.
+     */
     @Override
     public void onListItemClick(ListView list, View view, int pos, long id)
     {
@@ -72,10 +81,9 @@ public class TitlesListActivity extends ListActivity {
                 alert.setMessage("Empréstimo realizado com sucesso!").setNeutralButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
                         titlesDAO.alterLoanTitle(titleToLoan, 1);
                         userDAO.updateAvailability(user, 1);
-
-                        Log.i("debugManual", "Emprestimo realizado  " + user.getCanLoan());
                         finish();
                     }
                 }).show();
@@ -85,8 +93,6 @@ public class TitlesListActivity extends ListActivity {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.setMessage("Erro ao acessar arquivos").setNeutralButton("OK", null).show();
             }
-
-            Log.i("debugManual", user.getCanLoan() + "");
         }
     }
 }

@@ -1,6 +1,9 @@
 package tp2.pp.ufam.biblioloan_app;
 /*
  * Created by caiotelles on 26/06/17.
+ * Classe que realiza todas as manipulacoes necessarias ao longo do funcinamento do app na tabela de
+ * Usuarios
+ *
  */
 
 import android.content.Context;
@@ -18,6 +21,9 @@ public class UsuarioDAO
         this.database = (new Database(context)).getWritableDatabase();
     }
 
+    /*
+     * Acessa um usuario a partir das informacoes passadas nos parametros
+     */
     public Usuario getUser(String login, String pass)
     {
         Usuario user = null;
@@ -33,7 +39,9 @@ public class UsuarioDAO
         cursor.close();
         return user;
     }
-
+    /*
+     * Adiciona um novo usuario ao banco de dados
+     */
     public boolean addUser(Usuario user)
     {
         try
@@ -49,12 +57,20 @@ public class UsuarioDAO
             return false;
         }
     }
-
+    /*
+     * Retorna a lista de usuarios cadastrados no sistema
+     *             *Nao utilizada ao longo do aplicativo*
+     */
     public Cursor getUsuarios()
     {
         return this.database.rawQuery("SELECT rowid AS _id, login, password, name, canloan FROM Usuarios ORDER BY login", null);
     }
 
+    /*
+     * Altera o autorizacao do usuario para emprestar um novo titulo
+     *    - 0 pode emprestar
+     *    - 1 nao pode emprestar
+     */
     public void updateAvailability(Usuario user, int canLoan)
     {
         user.setCanLoan(canLoan);

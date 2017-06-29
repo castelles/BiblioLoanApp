@@ -6,6 +6,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/*
+ * Janela de criacao de um novo usuario
+ *    - nome de usuario
+ *    - senha
+ *    - nome completo
+ */
 public class NewUserActivity extends AppCompatActivity {
 
     @Override

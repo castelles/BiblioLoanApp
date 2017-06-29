@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /*
+     * Metodo visto em sala
+     * Trata a opcao selecionado no menu
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -44,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+    /*
+     * Entra na janela de interacao do usuario
+     */
     public void entrarApp(View view)
     {
         Intent intent = new Intent(this, UserActivity.class);
@@ -55,12 +61,8 @@ public class MainActivity extends AppCompatActivity {
         String login = editText.getText().toString();
         String pass = editTextPass.getText().toString();
 
-        Log.e("debugManual", "Antes do bd inicializar");
-
         UsuarioDAO userDAO = new UsuarioDAO(this);
         Usuario user = userDAO.getUser(login, pass);
-
-        Log.e("debugManual", "Depois do bd inicializar");
 
         if (user != null)
         {
