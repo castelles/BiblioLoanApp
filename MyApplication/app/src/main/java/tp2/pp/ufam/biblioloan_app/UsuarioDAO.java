@@ -61,4 +61,20 @@ public class UsuarioDAO
         String sqlCmd = "UPDATE Usuarios SET canloan=" + canLoan + " WHERE login='" + user.getUserName() + "'";
         database.execSQL(sqlCmd);
     }
+
+    public boolean updatePass(String username, String pass)
+    {
+        String sqlCmd = "SELECT * FROM Usuarios WHERE login='" + username + "'";
+        Cursor cursor = this.database.rawQuery(sqlCmd, null);
+        if (cursor.moveToNext())
+        {
+            sqlCmd = "UPDATE Usuarios SET password='" + pass + "' WHERE login='" + username + "'";
+            database.execSQL(sqlCmd);
+        }
+        else
+        {
+            return false;
+        }
+        return true;
+    }
 }

@@ -18,4 +18,12 @@
     <string name="returnrr">Voltar</string>
     <string name="editionLbl">Edição</string>
     <string name="LoanBt">Emprestar</string>
+    <string name="reconfigPass">Reconfigure sua senha:</string>
+    <string name="newPass">Nova Senha:</string>
+    <string name="confirmPass" />
+    <string name="confirmPasss">Confirme sua senha:</string>
+    <string name="pass">senha</string>
+    <string name="newpas">nova senha</string>
+    <string name="update" />
+    <string name="updatee">Atualizar</string>
 </resources>
